@@ -12,7 +12,7 @@ def processar_arquivo(arquivo: File) -> pd.DataFrame:
         data_frame.columns: pd.DataFrame = [formatar_nome_coluna(nome_coluna) for nome_coluna in nome_colunas]
         data_frame_formatado = data_frame.replace(r'\"', '', regex=True)
 
-        add_log("Sucesso", "processamento de arquivo", "Processado")
+        add_log("Info", "processamento de arquivo", "Processado")
 
         return data_frame_formatado
     except Exception as e:
