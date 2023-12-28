@@ -19,6 +19,7 @@ class Log(Base):
     tipo = Column(String)
     processo = Column(String)
     menssagem = Column(String)
+    nome_arquivo = Column(String)
 
 Base.metadata.create_all(bind=ENGINE)
 

@@ -1,19 +1,18 @@
-from commands.grava_dados_no_solr import grava_dados_solr
-from commands.processar_arquivo import processar_arquivo
-import io
+from commands.processa_envia import main
 from fastapi.responses import JSONResponse
 
 from fastapi import File, UploadFile,APIRouter
 
 router = APIRouter()
 
+
 @router.post("/add-arquivo")
-async def upload_do_arquivo(arquivo: UploadFile = File(...)) -> bool:
+async def upload_do_arquivo(arquivo: UploadFile = File(...)) -> JSONResponse:
     if arquivo.filename.endswith(".csv"):
-        arquivo_lido: File = await arquivo.read()
-        file_stream = io.BytesIO(arquivo_lido)
-        dados_arquivo: 'list[dict]' = processar_arquivo(file_stream).to_dict(orient='records')
-        
-        return grava_dados_solr(dados_arquivo)
+        caminho_arquivo: str = f"app/arquivos/{arquivo.filename}"
+        with open(f"app/arquivos/{arquivo.filename}", "wb") as novo_arquivo:
+            novo_arquivo.write(arquivo.file.read())
+        main(caminho_arquivo)
+        return JSONResponse(content={"message": "Ok"})
 
     return JSONResponse(content={"message": "Arquivo não é trátavel."})

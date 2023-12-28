@@ -1,25 +1,19 @@
 import pandas as pd
-from fastapi import File
+import numpy as np
 from unidecode import unidecode
 from logs.commands.inserir_logs import add_log
 
 
-def processar_arquivo(arquivo: File) -> pd.DataFrame:
+def processar_arquivo(df: pd.DataFrame, arquivo_nome: str) -> pd.DataFrame:
     try:
-        data_frame: pd.DataFrame = pd.read_csv(arquivo, encoding='utf-8')
-        nome_colunas: list[str] = data_frame.columns
-        data_frame: pd.DataFrame = data_frame["Nome"].str.split(',', expand=True)
-        data_frame.columns: pd.DataFrame = [formatar_nome_coluna(nome_coluna) for nome_coluna in nome_colunas]
-        data_frame_formatado = data_frame.replace(r'\"', '', regex=True)
-
-        add_log("Info", "processamento de arquivo", "Processado")
-
-        return data_frame_formatado
+        nome_colunas: list[str] = df.columns
+        df.columns: pd.DataFrame = [formatar_nome_coluna(nome_coluna) for nome_coluna in nome_colunas]
+        df: pd.DataFrame = df.fillna("")
+        add_log("Info", "processamento de arquivo", "Processado", arquivo_nome)
+        return df
     except Exception as e:
-        add_log("Erro", "processamento de arquivo", e)
-        
-    
+        add_log("Erro", "processamento de arquivo", str(e), arquivo_nome)
+
 def formatar_nome_coluna(palavra: str) -> str:
     palavra_formatada: str = unidecode(palavra).replace(" ", "_").lower()
-
     return palavra_formatada
