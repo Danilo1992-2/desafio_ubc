@@ -1,8 +1,10 @@
+from sys import path
+
+import pandas as pd
+
 from commands.processar_arquivo import processar_arquivo
 from commands.grava_dados_no_solr import grava_dados_solr
 from commands.deleta_arquivo import remove_arquivo
-from sys import path
-import pandas as pd
 
 
 def main(arquivo: path) -> str:

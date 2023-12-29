@@ -1,6 +1,8 @@
-from fastapi import FastAPI
 from routers import arquivo
 from routers import logs
+
+from fastapi import FastAPI
+
 
 app = FastAPI()
 

@@ -1,6 +1,7 @@
-import pysolr
 import os
 import logging
+
+import pysolr
 
 
 SOLR_URL = os.environ.get("SOLR_CON")

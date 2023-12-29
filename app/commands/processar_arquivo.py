@@ -1,5 +1,7 @@
-import pandas as pd
 from unidecode import unidecode
+
+import pandas as pd
+
 from logs.commands.inserir_logs import add_log
 
 

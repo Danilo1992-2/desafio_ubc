@@ -1,8 +1,9 @@
-from logs.queries.consulta_logs import todos_logs
 import pandas as pd
-
 from fastapi import APIRouter, Response
 from fastapi.responses import JSONResponse
+
+from logs.queries.consulta_logs import todos_logs
+
 
 router = APIRouter()
 

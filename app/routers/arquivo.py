@@ -1,8 +1,8 @@
-from commands.processa_envia import main
 from fastapi.responses import JSONResponse
-from logs.commands.inserir_logs import add_log
-
 from fastapi import File, UploadFile, APIRouter
+
+from commands.processa_envia import main
+from logs.commands.inserir_logs import add_log
 
 router = APIRouter()
 
