@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from unidecode import unidecode
 from logs.commands.inserir_logs import add_log
 
