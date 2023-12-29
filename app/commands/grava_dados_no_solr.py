@@ -1,7 +1,8 @@
 from util import SOLR_CON
 from logs.commands.inserir_logs import add_log
 
-def grava_dados_solr(dados: 'list[dict]', arquivo_nome: str) -> str:
+
+def grava_dados_solr(dados: "list[dict]", arquivo_nome: str) -> str:
     try:
         if SOLR_CON.ping():
             SOLR_CON.add(dados)

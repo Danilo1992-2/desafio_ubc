@@ -6,13 +6,16 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
 
-path_logs = 'logs/logs.db'
-ENGINE = create_engine(f'sqlite:///{path_logs}', connect_args={"check_same_thread": False})
+path_logs = "logs/logs.db"
+ENGINE = create_engine(
+    f"sqlite:///{path_logs}", connect_args={"check_same_thread": False}
+)
 
 Base = declarative_base()
 
+
 class Log(Base):
-    __tablename__ = 'logs'
+    __tablename__ = "logs"
 
     id = Column(Integer, primary_key=True, index=True)
     timestamp = Column(DateTime, default=datetime.utcnow)
@@ -20,6 +23,7 @@ class Log(Base):
     processo = Column(String)
     menssagem = Column(String)
     nome_arquivo = Column(String)
+
 
 Base.metadata.create_all(bind=ENGINE)
 
