@@ -12,7 +12,8 @@ router = APIRouter()
 async def pegar_todos_logs() -> Response or JSONResponse:
     try:
         dados: "list[list[str]]" = [
-            [i.tipo, i.timestamp, i.processo, i.menssagem, i.nome_arquivo] for i in todos_logs()
+            [i.tipo, i.timestamp, i.processo, i.menssagem, i.nome_arquivo]
+            for i in todos_logs()
         ]
         df: pd.DataFrame = pd.DataFrame(dados)
         df.columns = ["tipo", "timestamp", "processo", "menssagem", "arquivo"]

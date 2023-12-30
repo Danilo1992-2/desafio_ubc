@@ -12,7 +12,7 @@ async def upload_do_arquivo(arquivo: UploadFile = File(...)) -> JSONResponse:
     try:
         if arquivo.filename.endswith(".csv"):
             caminho_arquivo: str = f"arquivos/{arquivo.filename}"
-            with open(f"arquivos/{arquivo.filename}", "wb") as novo_arquivo:
+            with open(f"{caminho_arquivo}", "wb") as novo_arquivo:
                 novo_arquivo.write(arquivo.file.read())
             resultado: str = main(caminho_arquivo)
 
@@ -26,4 +26,4 @@ async def upload_do_arquivo(arquivo: UploadFile = File(...)) -> JSONResponse:
 
     except Exception as e:
         add_log("Erro", "API", str(e), arquivo.filename)
-        return JSONResponse(content={f"message": "{e}."})
+        return JSONResponse(content={f"message": f"{e}."})

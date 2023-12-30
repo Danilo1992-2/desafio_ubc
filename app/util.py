@@ -5,7 +5,7 @@ import pysolr
 
 
 SOLR_URL = os.environ.get("SOLR_CON")
-SOLR_CON = pysolr.Solr(SOLR_URL, always_commit=True)
+SOLR_CON = pysolr.Solr(SOLR_URL, always_commit=True, timeout=10)
 
 
 logging.basicConfig(
