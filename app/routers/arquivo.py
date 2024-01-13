@@ -11,7 +11,7 @@ router = APIRouter()
 async def upload_do_arquivo(arquivo: UploadFile = File(...)) -> JSONResponse:
     try:
         if arquivo.filename.endswith(".csv"):
-            caminho_arquivo: str = f"arquivos/{arquivo.filename}"
+            caminho_arquivo: str = f"arquivos_leitura/{arquivo.filename}"
             with open(f"{caminho_arquivo}", "wb") as novo_arquivo:
                 novo_arquivo.write(arquivo.file.read())
             resultado: str = main(caminho_arquivo)
